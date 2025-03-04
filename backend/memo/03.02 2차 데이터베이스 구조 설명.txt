@@ -1,0 +1,74 @@
+MySQL 데이터베이스 구조 설계 보고서
+
+1. 데이터베이스명 : filedatabase
+
+2. 주요 테이블(Database Schema)
+1) users
+- 사용자 정보 저장
+- 회원가입 및 로그인 기능 지원
+- 각 사용자는 고유한 key_number를 제공 받음
+- 이 key_number를 통해 다른 테이블과 연결
+
+2) files
+- 업로드된 파일 정보 저장
+- 각 파일은 users 테이블의 key_number를 참조하여 사용자가 연결
+- folder_id를 통해 folders 테이블과 연결
+- folder_id가 삭제될 경우 SET NULL로 처리해 데이터 무결성 유지
+
+3) folders
+- 폴더 목록을 관리
+- 중복된 폴더명이 저장되지 않도록 UNIQUE 제약 조건 설정
+- 폴더는 "전체 파일", "기타 파일"을 기본적으로 포함
+
+3. 각 테이블 구조 설명
+1) users
+- key_number : INT, PRIMARY KEY, AUTO_INCREMENT : 사용자 고유번호 (참조 키)
+- id : VARCHAR(50), NOT NULL : 사용자가 지정한 아이디
+- password : VARCHAR(255), NOT NULL : 사용자 비밀번호
+- email : VARCHAR(255), NOT NULL, UNIQUE : 사용자 이메일 (중복 불가)
+- phone : VARCHAR(20), NOT NULL, UNIQUE : 사용자 전화번호 (중복 불가)
+
+2) files
+- file_id : INT, PRIMARY KEY, AUTO_INCREMENT : 파일 고유 id
+- user_key : INT, NOT NULL, FOREIGN KEY : 업로드한 사용자 (users.key_number 참조)
+- file_name : VARCHAR(255), NOT NULL : 업로드된 파일명
+- file_path : TEXT, NOT NULL : 파일 저장 경로
+- category : VARCHAR(255) : 개인 카테고리
+- folder : VARCHAR(255) : 분류된 폴더
+- uploaded_at : TIMESTAMP, DEFAULT CURRENT_TIMESTAMP : 파일 업로드 날짜
+
+4. 각 테이블 생성 SQL 코드
+1) users
+CREATE TABLE users (
+    key_number INT AUTO_INCREMENT PRIMARY KEY,  -- 사용자 고유번호 (참조 키)
+    id VARCHAR(50) NOT NULL,                    -- 사용자 아이디
+    password VARCHAR(255) NOT NULL,             -- 비밀번호 (해싱 적용 필요)
+    email VARCHAR(255) UNIQUE NOT NULL,         -- 이메일 (중복 방지)
+    phone VARCHAR(20) UNIQUE NOT NULL           -- 전화번호 (중복 방지)
+);
+
+2) files
+CREATE TABLE files (
+    file_id INT AUTO_INCREMENT PRIMARY KEY,
+    user_key INT NOT NULL,
+    file_name VARCHAR(255) NOT NULL,
+    file_path TEXT NOT NULL,
+    folder_id INT,
+    uploaded_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (folder_id) REFERENCES folders(folder_id) ON DELETE SET NULL
+);
+
+3) folders
+CREATE TABLE folders (
+    folder_id INT AUTO_INCREMENT PRIMARY KEY,
+    folder_name VARCHAR(255) NOT NULL UNIQUE
+);
+
+5. 데이터 관계(ERD) 설명
+- 한 명의 사용자는 여러 개의 파일을 업로드할 수 있는 1대N 관계
+- files.user_key는 users.key_number를 참조하는 외래키(FK)로 설정
+
+6. 향후 개선 사항
+- category와 folder를 별도의 테이블로 분리하여 정규화 가능
+- 파일의 메타 데이터(크기, 확장자 등) 추가적인 고려 가능
+- password의 암호화 기능 적용 필요

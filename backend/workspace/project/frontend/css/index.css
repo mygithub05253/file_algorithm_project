@@ -1,0 +1,53 @@
+/*전체 페이지*/
+body {
+    font-family: Arial, sans-serif;
+    text-align: center;
+    background-color: #f4f4f4;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+/*컨테이너(로그인/회원가입 버튼 포함)*/
+.container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border: 2px solid black;
+    border-radius: 15px;
+    padding: 50px;
+    width: 400px;
+    height: 300px;
+    background-color: white;
+    text-align: center;
+    box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.2);
+    position: relative;
+}
+/*제목 스타일*/
+h1 {
+    margin-bottom: 150px;
+    font-size: 30px; 
+    font-weight: bold;}
+/*버튼 그룹 스타일*/
+.buttons {
+    display: flex;
+    gap: 15px;
+    justify-content: center;
+}
+/*버튼 스타일*/
+button {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 12px 25px;
+    cursor: pointer;
+    font-size: 16px;
+    border-radius: 8px;
+}
+/*버튼에 마우스 올렸을때 스타일 변경*/
+button:hover {
+    background-color: #0056b3;
+}

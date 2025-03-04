@@ -1,0 +1,160 @@
+/* 전체 페이지 */
+body {
+  font-family: Arial, sans-serif;
+  text-align: center;
+  background-color: #f5f5f5;
+  margin: 0;
+  padding: 20px;
+}
+
+/* 네비게이션 바 스타일 */
+#navBar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #007BFF;
+  padding: 10px 20px;
+  border-radius: 8px;
+  margin-bottom: 20px;
+  position: relative;
+}
+
+#pageNavigation {
+  display: flex;
+  gap: 10px;
+}
+
+#pageNavigation button {
+  background-color: white;
+  border: 2px solid black;
+  padding: 10px 15px;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: bold;
+  border-radius: 5px;
+}
+
+#pageNavigation button:hover {
+  background-color: #ddd;
+}
+
+/* 폴더 탭 스타일 */
+#folderTabs {
+  display: flex;
+  gap: 10px;
+}
+
+.tab {
+  background-color: rgb(0, 100, 0);
+  border: 2px solid black;
+  padding: 10px 15px;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: bold;
+  min-width: 150px;
+}
+
+.tab.active {
+  background-color: #007BFF;
+  color: white;
+}
+
+/* 메인 컨테이너 */
+#mainContainer {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 20px;
+  padding: 20px;
+  width: 90%;
+  margin: 0 auto;
+}
+
+/* 파일 목록 */
+#folderContainer {
+  background-color: #ddd;
+  padding: 20px;
+  border: 2px solid black;
+  width: 65%;
+  min-height: 500px;
+  max-height: 600px;
+  overflow-y: auto;
+  border-radius: 8px;
+}
+
+/* 파일 업로드 박스 */
+#uploadContainer {
+  width: 30%;
+}
+
+#uploadBox {
+  background-color: white;
+  border: 2px solid black;
+  padding: 20px;
+  text-align: center;
+  border-radius: 8px;
+}
+
+/* 폴더 선택 및 추가 */
+#folderSelect, #newCategoryName {
+  width: 90%;
+  padding: 10px;
+  margin-top: 10px;
+}
+
+/* 파일 리스트 스타일 */
+ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+li {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: rgb(255, 255, 255);
+  margin: 5px 0;
+  padding: 10px;
+  border-radius: 5px;
+  border: 1px solid #000000;
+}
+
+/* 체크박스 스타일 */
+input[type="checkbox"] {
+  transform: scale(1.2);
+  margin-right: 10px;
+}
+
+/* 검색창 스타일 */
+#searchBox {
+  width: 90%;
+  padding: 8px;
+  margin-bottom: 10px;
+  border: 1px solid black;
+}
+
+/* 버튼 스타일 */
+button {
+  background-color: black;
+  color: white;
+  border: none;
+  padding: 10px 15px;
+  margin: 5px;
+  cursor: pointer;
+  font-size: 14px;
+  border-radius: 5px;
+}
+
+button:hover {
+  background-color: #333;
+}
+
+/* 로그아웃 버튼 스타일 */
+#logoutButton {
+  background-color: #f44336;
+  color: white;
+  border: none;
+  padding: 10px 15px;
+  border-radius: 5px;
+  cursor: pointer;
+}

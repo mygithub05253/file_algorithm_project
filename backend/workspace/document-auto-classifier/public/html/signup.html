@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>회원가입</title>
+    <link rel="stylesheet" href="../css/signup.css" />
+  </head>
+  <body>
+    <div class="container">
+      <h2>회원가입</h2>
+
+      <div class="info-box">
+        <p><strong>📢 학교 이메일(@gachon.ac.kr) 사용을 권장합니다.</strong></p>
+        <p>학교 이메일을 사용하면 인증 과정이 원활하게 진행됩니다.</p>
+      </div>
+
+      <form id="signupForm">
+        <label for="email">이메일:</label>
+        <input
+          type="email"
+          id="email"
+          placeholder="ex) example@gachon.ac.kr"
+          required
+        />
+
+        <button type="button" id="emailVerify">이메일 인증</button>
+        <input type="text" id="emailCode" placeholder="이메일 인증 코드 입력" />
+
+        <label for="ID">아이디(ID):</label>
+        <input type="text" id="ID" placeholder="아이디 입력" required />
+
+        <label for="password">비밀번호:</label>
+        <input
+          type="password"
+          id="password"
+          placeholder="비밀번호 입력"
+          required
+        />
+
+        <label for="password correct">비밀번호 확인:</label>
+        <input
+          type="password"
+          id="password correct"
+          placeholder="비밀번호 입력"
+          required
+        />
+
+        <label for="phone">전화번호:</label>
+        <input type="tel" id="phone" placeholder="전화번호 입력" required />
+
+        <button type="button" id="smsVerify">문자 인증</button>
+        <input type="text" id="smsCode" placeholder="문자 인증 코드 입력" />
+
+        <button type="submit">회원가입</button>
+      </form>
+    </div>
+
+    <script src="../js/signup.js"></script>
+    <!-- 디버깅용 JS 추가 -->
+  </body>
+</html>

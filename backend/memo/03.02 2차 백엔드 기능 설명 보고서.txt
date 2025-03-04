@@ -1,0 +1,18 @@
+1. server.js 백엔드 상세 코드
+1) classifyFile()
+- 파일명 기반 자동 폴더 분류
+- folders 테이블에서 최신 폴더 목록을 가져와 파일명을 분석
+- 파일명이 특정 폴더명을 포함할 경우 해당 폴더에 추가
+- 포함된 폴더가 없을 경우 "기타 파일" 폴더에 저장
+
+2) POST /upload
+- 파일 업로드 API
+- 파일 업로드 시 classifyFile()을 호출해 적절한 폴더를 찾고 없으면 추가
+- 폴더를 먼저 folders 테이블에서 조회한 후 없을 경우 삽입 후 folder_id를 가져옴
+- 파일을 files 테이블에 저장하면서 folder_id를 함께 저장
+
+2. system.js 프론트엔드 상세 코드
+1) fetchFilesFromServer()
+- 파일 목록 가져오기
+- 백엔드에서 folder_name을 가져와 UI에서 파일을 올바르게 분류
+- "전체 파일"과 "기타 파일" 폴더가 항상 유지되도록 설정

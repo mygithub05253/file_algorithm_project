@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>문서 자동 분류 시스템</title>
+    <link rel="stylesheet" href="../css/system.css">
+</head>
+<body>
+    <div id="navBar">
+        <div id="folderTabs"></div>
+        <button id="logoutButton" onclick="logout()">🚪 로그아웃</button>
+    </div>
+    
+    <div id="categoryControls">
+        <input type="text" id="newCategoryName" placeholder="새 카테고리명">
+        <button onclick="createCategory()">추가</button>
+    </div>
+
+    <div id="mainContainer">
+        <div id="folderContainer">
+            <h2 id="folderTitle">📁 전체 파일</h2>
+
+            <input type="text" id="searchBox" placeholder="파일 검색..." onkeyup="searchFiles()">
+
+            <select id="sortOption" onchange="sortFiles()">
+                <option value="latest">최신순</option>
+                <option value="oldest">오래된 순</option>
+            </select>
+
+            <ul id="fileList"></ul>
+
+            <div class="controls">
+                <button onclick="selectAllFiles(true)">전체 선택</button>
+                <button onclick="selectAllFiles(false)">전체 해제</button>
+                <button onclick="downloadSelected()">선택 다운로드</button>
+                <button id="deleteSelectedBtn" onclick="deleteSelected()">선택 삭제</button>
+                <button onclick="downloadAll()">전체 다운로드</button>
+            </div>
+        </div>
+
+        <!-- ✅ 파일 업로드 UI 추가 -->
+        <div id="uploadContainer">
+            <div id="uploadBox">
+                <h2>📂 파일 업로드</h2>
+                <input type="file" id="fileInput" multiple>
+                <button onclick="uploadFiles()">파일 추가</button>
+            </div>
+        </div>
+
+    </div>
+
+    <script src="../js/system.js"></script>
+</body>
+</html>

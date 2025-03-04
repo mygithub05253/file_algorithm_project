@@ -1,0 +1,88 @@
+Node.js 서버 코드 검토 보고서
+1. 요약
+- server.js 파일 기반으로 회원가입, 로그인, 파일 업로드 기능을 DB와 연결하기 위한 1차 작업 수행
+
+2. 구조 설명
+1) 사용 프레임워크 : Express.js => 라우팅, JSON 파싱, 미들웨어 처리 등의 원활한 작업 위해 사용
+2) 포트 : 3000
+3) 주요 라이브러리
+- express : 웹 서버 프레임워크
+- body-parser : JSON 데이터 처리
+- cors : CORS 설정
+- path : 정적 파일 제공
+
+3. 코드 설명 = 주요 기능 설명
+1) 정적 파일 제공 (public 폴더)
+- express.static() 활용 => public 폴더의 html, css, js 파일 제공
+- localhost:3000 접속 시 index.html 화면 작동
+- 사용 코드
+app.use(express.static(path.join(__dirname, "public")));
+
+app.get("/", (req, res) => {
+  res.sendFile(path.join(__dirname, "public/html/index.html"));
+});
+
+2) 회원가입 API(/signup)
+- /signup POST 요청 => ID, 비밀번호, 이메일, 전화번호를 콘솔에서 확인 가능
+- DB 저장 기능 구현 필요
+=> DB에 사용자 정보 저장 추가 기능 구현 필요
+=> bcrypt 라이브러리를 이용해 비밀번호 암호화 구현 지향
+- 사용 코드
+app.post("/signup", (req, res) => {
+  const { id, password, email, phone } = req.body;
+  if (!id || !password || !email || !phone) {
+    return res.status(400).json({ message: "필수 데이터를 입력하세요." });
+  }
+
+  console.log(`✅ 회원가입 요청 수신됨! ID: ${id}, Email: ${email}, Phone: ${phone}`);
+  res.status(200).json({ message: "회원가입 정보 수신 완료" });
+});
+
+3) 로그인 API(/login)
+- /login POST 요청 => ID와 비밀번호를 확인 후 콘솔에서 확인 가능
+- 현재 DB와 비교하는 기능 구현 필요
+=> DB를 조회한 뒤 아이디/비밀번호 비교하는 사용자 정보 검증 기능 구현 필요
+=> jsonwebtoken 라이브러리 활용해 JWT 토큰을 발급해서 로그인 유지 가능 기능 추가 구현(선택 사항)
+- 사용 코드
+app.post("/login", (req, res) => {
+  const { id, password } = req.body;
+  if (!id || !password) {
+    return res.status(400).json({ message: "아이디와 비밀번호를 입력하세요." });
+  }
+
+  console.log(`✅ 로그인 요청 수신됨! ID: ${id}`);
+  res.status(200).json({ message: "로그인 정보 수신 완료" });
+});
+
+4) 파일 업로드 및 기록 저장 API(/file-records)
+- /file-records POST 요청 시, 파일 및 폴더 관련 데이터 콘솔에서 확인 가능
+- 실제 파일 저장 기능 존재 X
+=> multer 라이브러리 활용 해 실제 파일 업로드 기능 추가 가능
+=> 파일을 특정 디렉토리에 저장 후 DB에 기록하는 방식 활용 추천
+- 사용 코드
+app.post("/file-records", (req, res) => {
+  const { userId, files, folders, categories } = req.body;
+  if (!userId || !files || !folders || !categories) {
+    return res.status(400).json({ message: "필수 데이터가 누락되었습니다." });
+  }
+
+  console.log(`✅ 파일 기록 요청 수신! 사용자 ID: ${userId}, 파일 개수: ${files.length}`);
+  res.status(200).json({ message: "파일 기록 정보 수신 완료 (DB 저장 X)" });
+});
+
+4. 1차 코드 확인(검증) 절차 결과
+1) 구현된 기능
+- 회원가입 (/signup)
+- 로그인 (/login)
+- 파일 업로드 기록 저장 (/file-records)
+
+2) 미완성/미구현 기능
+- 이메일 인증 기능 => nodemailer 라이브러리 사용 권장
+- 문자 인증 기능 => Twilio 또는 CoolSMS API 사용 권장
+- 사용자 데이터 저장 기능
+- 실제 파일 업로드 처리 기능
+
+3) 추가 구현 필요 사항
+- fetch 요청 정상적 수행되도록 프론트엔드 수정 필요
+- 데이터 저장 및 인증 로직을 DB와 연결하는 과정 구현 필요
+- 보안 강화 (비밀번호 암호화, JWT 토큰) => 선택 사항
