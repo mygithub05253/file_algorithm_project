@@ -1,0 +1,4 @@
+body { margin: 0; padding: 0;   background: #e0e5ec;}
+table { width: 950px; border-collapse: collapse; }
+th, td { border: 1px solid black; width: 14.28%; height: 100px; text-align: center; vertical-align: top; padding: 0; }
+td { position: relative; }

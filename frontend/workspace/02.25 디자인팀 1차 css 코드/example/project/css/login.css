@@ -1,0 +1,84 @@
+/* 기본 스타일 설정 */
+body {
+    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif; /* 시스템 기본 폰트 */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #f2f2f7; /* 부드러운 회색 배경 */
+    margin: 0;
+}
+
+/* 로그인 박스 */
+.container {
+    background-color: white;
+    padding: 40px;
+    width: 380px;
+    border-radius: 20px; /* 둥근 모서리 */
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1); /* 부드러운 그림자 */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+/* 제목 스타일 */
+h2 {
+    margin-bottom: 25px;
+    font-size: 26px;
+    font-weight: 600;
+    color: #333; /* 어두운 회색 텍스트 */
+    letter-spacing: -0.5px; /* 글자 간격 */
+}
+
+/* 입력 필드 및 버튼 공통 스타일 */
+input, button {
+    width: 100%; /* 100% 너비 */
+    padding: 15px;
+    margin: 10px 0; /* 위아래 마진 */
+    border: 1px solid #dcdfe6; /* 연한 회색 테두리 */
+    border-radius: 12px; /* 둥글게 처리 */
+    font-size: 16px;
+    box-sizing: border-box; /* padding과 border 포함 */
+    transition: all 0.3s ease-in-out; /* 부드러운 전환 효과 */
+}
+
+/* 입력 필드 포커스 시 스타일 */
+input:focus {
+    border-color: #007bff; /* 파란색 테두리 */
+    box-shadow: 0 0 5px rgba(0, 122, 255, 0.3); /* 파란색 그림자 */
+    outline: none; /* 기본 outline 제거 */
+}
+
+/* 버튼 스타일 */
+button {
+    background-color: #007bff; /* 파란색 */
+    color: white;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+/* 버튼 호버 시 스타일 */
+button:hover {
+    background-color: #0051a8; /* 진한 파란색 */
+    transform: scale(1.05); /* 크기 확대 */
+}
+
+/* 버튼 클릭 시 효과 */
+button:active {
+    transform: scale(0.98); /* 클릭 시 크기 축소 */
+}
+
+/* 에러 메시지 */
+.error {
+    color: red;
+    font-size: 14px;
+    margin-top: 5px;
+    display: none; /* 기본적으로 숨김 */
+}
+
+/* 숨기기 위한 클래스 */
+.hidden {
+    display: none;
+}

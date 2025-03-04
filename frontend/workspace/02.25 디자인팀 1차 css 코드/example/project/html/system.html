@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>문서 자동 분류 시스템</title>
+    <link rel="stylesheet" href="../css/system.css">
+</head>
+<body>
+
+    <!-- 폴더 탭 -->
+    <div id="folderTabs">
+        <button class="tab active" onclick="changeTab('전체 파일')">
+            📁 <span>전체 파일</span>
+        </button>
+        <button class="tab" onclick="changeTab('교내')">
+            📁 <span>교내</span>
+        </button>
+        <button class="tab" onclick="changeTab('업무')">
+            📁 <span>업무</span>
+        </button>
+        <button class="tab" onclick="changeTab('개인')">
+            📁 <span>개인</span>
+        </button>
+    </div>
+
+    <!-- 메인 컨테이너 -->
+    <div id="mainContainer">
+        
+        <!-- 파일 목록 -->
+        <div id="folderContainer">
+            <h2 id="folderTitle">📁 전체 파일</h2>
+
+            <!-- 파일 검색 -->
+            <input type="text" id="searchBox" placeholder="파일 검색..." onkeyup="searchFiles()">
+            
+            <!-- 정렬 옵션 -->
+            <select id="sortOption" onchange="sortFiles()">
+                <option value="latest">최신순</option>
+                <option value="oldest">오래된 순</option>
+            </select>
+
+            <!-- 파일 리스트 -->
+            <ul id="fileList"></ul>
+
+            <!-- 다운로드 및 삭제 버튼 (오른쪽 정렬) -->
+            <div class="controls">
+                <button onclick="selectAllFiles(true)">전체 선택</button>
+                <button onclick="selectAllFiles(false)">전체 해제</button>
+                <button onclick="downloadSelected()">선택 다운로드</button>
+                <button id="deleteSelectedBtn" onclick="deleteSelected()">선택 삭제</button>
+                <button onclick="downloadAll()">전체 다운로드</button>
+            </div>
+        </div>
+
+        <!-- 파일 업로드 창 -->
+        <div id="uploadContainer">
+            <div id="uploadBox">
+                <h2>📂 파일 업로드</h2>
+                
+                <!-- 폴더 선택 -->
+                <label for="folderSelect">폴더 선택:</label>
+                <select id="folderSelect" onchange="toggleNewFolderInput()">
+                    <option value="교내">교내</option>
+                    <option value="업무">업무</option>
+                    <option value="개인">개인</option>
+                    <option value="new">새 폴더</option>
+                </select>
+
+                <!-- 새 폴더 입력창 -->
+                <div id="newFolderSection" style="display: none;">
+                    <input type="text" id="newFolderName" placeholder="새 폴더명 입력">
+                    <button onclick="createNewFolder()">새 폴더 추가</button>
+                </div>
+
+                <!-- 파일 업로드 -->
+                <input type="file" id="fileInput" multiple>
+                <button onclick="uploadFiles()">파일 추가</button>
+            </div>
+        </div>
+
+    </div>
+
+    <script src="../js/system.js"></script>
+</body>
+</html>

@@ -1,0 +1,35 @@
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  margin: 0;
+  background-color: #f0f0f0;
+}
+
+.icon-container {
+  position: relative;
+  width: 200px;
+  height: 200px;
+}
+
+.more-icon {
+  width: 50px;
+  height: 50px;
+  background-color: #007BFF;
+  border-radius: 50%;
+  position: absolute;
+  transition: transform 0.5s ease-in-out;
+}
+
+.more-icon:nth-child(1) {
+  transform: translateY(-60px);
+}
+
+.more-icon:nth-child(2) {
+  transform: translateY(0);
+}
+
+.more-icon:nth-child(3) {
+  transform: translateY(60px);
+}

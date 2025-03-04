@@ -1,0 +1,67 @@
+/* 기본 스타일 설정 */
+body {
+    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif; /* 시스템 기본 폰트 */
+    text-align: center;
+    background-color: #f0f0f5; /* 부드러운 회색 배경 */
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+/* 로그인 박스를 위한 컨테이너 */
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 40px;
+    width: 360px;
+    background-color: white;
+    border: 1px solid #dcdfe6;
+    border-radius: 20px; /* 둥근 모서리 */
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1); /* 부드러운 그림자 */
+    text-align: center;
+}
+
+/* 제목 스타일 */
+h1 {
+    margin-bottom: 30px;
+    font-size: 28px;
+    font-weight: 600;
+    color: #333; /* 어두운 회색 텍스트 */
+    letter-spacing: -0.5px;
+}
+
+/* 버튼 그룹 스타일 */
+.buttons {
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+}
+
+/* 버튼 스타일 */
+button {
+    background-color: #007aff; /* 파란색 */
+    color: white;
+    border: none;
+    padding: 14px 30px;
+    font-size: 16px;
+    border-radius: 12px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.2s;
+}
+
+/* 버튼 호버 시 스타일 */
+button:hover {
+    background-color: #0051a8; /* 진한 파란색 */
+    transform: scale(1.05); /* 마우스를 올렸을 때 버튼 크기 확대 */
+}
+
+/* 버튼 클릭 시 효과 */
+button:active {
+    transform: scale(0.98); /* 클릭 시 버튼 크기 축소 */
+}
